@@ -1,0 +1,80 @@
+name: Deploy Theme to Shopify
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to ${{ matrix.shop.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shop:
+          - name: "Futur Villas (Production)"
+            store_url: SHOPIFY_STORE_URL_FUTUR_VILLAS
+            theme_token: SHOPIFY_CLI_THEME_TOKEN_FUTUR_VILLAS
+            theme_name: "futur.villas/main"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli @shopify/theme
+
+      - name: Deploy theme to ${{ matrix.shop.name }}
+        env:
+          SHOPIFY_FLAG_STORE: ${{ secrets[matrix.shop.store_url] }}
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets[matrix.shop.theme_token] }}
+          SHOPIFY_CLI_TTY: 0
+        run: |
+          echo "Deploying to ${{ matrix.shop.name }}..."
+
+          # Find or create theme
+          THEME_NAME="${{ matrix.shop.theme_name }}"
+
+          # Check if theme exists - prioritize main/live theme, or get first match
+          THEME_ID=$(shopify theme list --json | jq -r "[.[] | select(.name==\"${THEME_NAME}\")] | sort_by(.role == \"main\") | reverse | .[0].id // empty")
+
+          if [ -z "$THEME_ID" ]; then
+            echo "Creating new theme: ${THEME_NAME}"
+            shopify theme push --unpublished --theme "${THEME_NAME}" --force --allow-live
+            THEME_ID=$(shopify theme list --json | jq -r "[.[] | select(.name==\"${THEME_NAME}\")] | .[0].id // empty")
+          else
+            echo "Updating existing theme: ${THEME_NAME} (ID: ${THEME_ID})"
+            # Always use --allow-live flag in CI environment
+            shopify theme push --theme ${THEME_ID} --force --allow-live
+          fi
+
+          # Check if theme is already live
+          IS_LIVE=$(shopify theme list --json | jq -r ".[] | select(.id==${THEME_ID}) | .role // empty")
+          if [ "$IS_LIVE" != "main" ]; then
+            echo "Publishing theme as live..."
+            shopify theme publish --theme ${THEME_ID} --force
+          else
+            echo "Theme is already live"
+          fi
+
+          echo "✅ Theme deployed to ${{ matrix.shop.name }} successfully!"
+
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const theme_url = `https://${{ secrets[matrix.shop.store_url] }}`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ Theme deployed to ${{ matrix.shop.name }} successfully! View it at: ${theme_url}`
+            });
