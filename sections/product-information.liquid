@@ -283,6 +283,13 @@
   }
 {% endstylesheet %}
 
+{%- comment -%} Auto-rotating product carousel {%- endcomment -%}
+<script
+  src="{{ 'product-carousel-autoplay.js' | asset_url }}"
+  type="module"
+  async
+></script>
+
 {% schema %}
 {
   "name": "t:names.product_information",

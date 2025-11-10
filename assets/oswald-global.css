@@ -1,0 +1,238 @@
+/* Global Oswald Font Application - Bold Italic Throughout */
+
+/* Override all font family variables to use Oswald */
+:root {
+  /* Primary font families - all Oswald */
+  --font-body--family: "Oswald", sans-serif !important;
+  --font-subheading--family: "Oswald", sans-serif !important;
+  --font-heading--family: "Oswald", sans-serif !important;
+  --font-accent--family: "Oswald", sans-serif !important;
+
+  /* Font styles - bold italic */
+  --font-body--style: italic !important;
+  --font-body--weight: 700 !important;
+  --font-subheading--style: italic !important;
+  --font-subheading--weight: 700 !important;
+  --font-heading--style: italic !important;
+  --font-heading--weight: 700 !important;
+  --font-accent--style: italic !important;
+  --font-accent--weight: 700 !important;
+
+  /* Button fonts */
+  --button-font-family-primary: "Oswald", sans-serif !important;
+  --button-font-family-secondary: "Oswald", sans-serif !important;
+
+  /* Cart fonts */
+  --cart-primary-font-family: "Oswald", sans-serif !important;
+  --cart-secondary-font-family: "Oswald", sans-serif !important;
+}
+
+/* Apply Oswald bold italic globally */
+* {
+  font-family: "Oswald", sans-serif !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+}
+
+/* Headings - Larger sizes with bold italic */
+h1, .h1,
+[class*="h1"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+h2, .h2,
+[class*="h2"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(2rem, 5vw, 3.5rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
+}
+
+h3, .h3,
+[class*="h3"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.75rem, 4vw, 2.75rem) !important;
+  line-height: 1.2 !important;
+}
+
+h4, .h4,
+[class*="h4"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem) !important;
+  line-height: 1.25 !important;
+}
+
+h5, .h5,
+[class*="h5"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.25rem, 3vw, 1.875rem) !important;
+  line-height: 1.3 !important;
+}
+
+h6, .h6,
+[class*="h6"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem) !important;
+  line-height: 1.35 !important;
+}
+
+/* Body text - Medium size bold italic */
+body,
+p,
+.body,
+[class*="paragraph"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+  line-height: 1.5 !important;
+}
+
+/* Navigation - Slightly larger */
+nav,
+.menu,
+.navigation,
+[class*="menu"],
+[class*="nav"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem) !important;
+}
+
+/* Buttons - Bold italic with good spacing */
+button,
+.button,
+[type="button"],
+[type="submit"],
+a.btn {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem) !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+/* Product titles - Extra bold and large */
+.product-title,
+.product__title,
+[class*="product-title"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.75rem, 4vw, 2.5rem) !important;
+  line-height: 1.2 !important;
+}
+
+/* Product prices - Bold and prominent */
+.price,
+.product-price,
+[class*="price"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+}
+
+/* Product description - Slightly smaller */
+.product-description,
+.product__description,
+[class*="description"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(0.95rem, 2vw, 1.125rem) !important;
+  line-height: 1.6 !important;
+}
+
+/* Cart items */
+.cart-item,
+.cart__item,
+[class*="cart"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+}
+
+/* Footer - Smaller but still bold italic */
+footer,
+.footer,
+[class*="footer"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(0.875rem, 1.75vw, 1.125rem) !important;
+}
+
+/* Hero text - Extra large and dramatic */
+.hero,
+.hero__title,
+.hero__heading,
+[class*="hero"] h1,
+[class*="hero"] h2 {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(3rem, 8vw, 6rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* Collection titles */
+.collection-title,
+.collection__title,
+[class*="collection-title"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(2rem, 5vw, 3.5rem) !important;
+  line-height: 1.15 !important;
+}
+
+/* Labels and tags */
+label,
+.label,
+.tag,
+[class*="label"],
+[class*="tag"] {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(0.875rem, 1.75vw, 1rem) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* Input fields */
+input,
+textarea,
+select {
+  font-family: "Oswald", sans-serif !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-size: clamp(1rem, 2vw, 1.125rem) !important;
+}
+
+/* Ensure font loads properly */
+@supports (font-variation-settings: normal) {
+  * {
+    font-optical-sizing: auto;
+  }
+}
