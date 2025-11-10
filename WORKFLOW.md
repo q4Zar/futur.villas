@@ -474,9 +474,68 @@ This provides:
 - Uses theme color variables for consistency
 
 ---
+
+## Task: Rollback to Pre-Bordered Layout
+
+**Status:** ✅ Completed
+**Date:** 2025-11-10
+
+### Objective:
+Rollback codebase to state before bordered layout and margin changes were added, removing PRs #6-9.
+
+### Tasks Completed:
+
+1. ✅ **Branch Renamed**
+   - Renamed `singapore` → `rollback-bordered-layout`
+
+2. ✅ **Hard Reset to Pre-Bordered Layout**
+   - Reset to commit `52391dc` (PR #5: "Fix predictive search results readability")
+   - Removed 4 merged PRs worth of changes:
+     - PR #9: Add Spotify players to top and bottom navigation
+     - PR #8: Add Spotify player to top navigation
+     - PR #7: Replace carousel with SoundSystems for Homes hero text
+     - PR #6: Add bordered layout with 60% center content and navigation areas
+
+3. ✅ **Force Pushed to Remote**
+   - Pushed `rollback-bordered-layout` branch to GitHub
+   - Branch available at: https://github.com/q4Zar/futur.villas/tree/rollback-bordered-layout
+
+4. ✅ **Deployed to Production**
+   - Triggered deployment workflow: "Deploy Theme to Shopify"
+   - Workflow run ID: 19236211520
+   - **Status**: ✅ Completed successfully (37s)
+   - **Theme deployed to**: Futur Villas (Production)
+   - **Shop**: xjtm5x-pp.myshopify.com
+
+### Current State:
+
+**Branch**: `rollback-bordered-layout`
+**HEAD**: `52391dc` - Fix predictive search results readability with semi-transparent background
+
+**Features in current deployment:**
+- ✅ Shopify Savor theme base
+- ✅ Google Fonts integration (Barlow, Noto Sans, Oswald)
+- ✅ Oswald bold italic globally applied
+- ✅ Auto-rotating product carousels
+- ✅ DALI scenes carousel in hero section
+- ✅ Predictive search with readable background
+
+**Removed features:**
+- ❌ Bordered layout (20% | 60% | 20% structure)
+- ❌ Top/bottom navigation bars
+- ❌ Spotify players
+- ❌ "SoundSystems for Homes" hero text
+
+### Next Steps (Optional):
+- User can now rebuild features from this clean state
+- Can merge changes back to main when ready
+- Theme is live and functional on production shop
+
+---
 *Last Updated: 2025-11-10*
 *All tasks completed successfully - Automated deployment is live!*
 *Web Crawler System: Operational - Now managed with uv in scripts/ directory ✅*
 *Scripts project properly isolated from theme with modern dependency management ✅*
 *Shopify Collections & Products: 20 collections and 16 DALI products imported ✅*
 *Product Images Issue: Diagnosed - Products need images uploaded ⚠️*
+*Rollback Completed: Reset to commit 52391dc and deployed to production ✅*
