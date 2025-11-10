@@ -36,34 +36,148 @@
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
-    <div id="header-group">
-      {% sections 'header-group' %}
+
+    {%- comment -%} Top Border Navigation {%- endcomment -%}
+    <div id="top-border-navigation" class="border-navigation border-navigation--top">
+      {%- comment -%} Future top navigation menu content {%- endcomment -%}
     </div>
 
-    <script
-      src="{{ 'critical.js' | asset_url }}"
-      type="module"
-      async
-      blocking="render"
-    ></script>
+    {%- comment -%} Main Layout Container with Side Borders {%- endcomment -%}
+    <div class="layout-with-borders">
+      {%- comment -%} Left Border (20%) {%- endcomment -%}
+      <div class="side-border side-border--left">
+        {%- comment -%} Future left border content/decoration {%- endcomment -%}
+      </div>
 
-    <main
-      id="MainContent"
-      class="content-for-layout"
-      role="main"
-      data-page-transition-enabled="{{ settings.page_transition_enabled }}"
-      data-product-transition="{{ settings.transition_to_main_product }}"
-      data-template="{{ template }}"
-    >
-      {{ content_for_layout }}
-    </main>
+      {%- comment -%} Center Content (60%) {%- endcomment -%}
+      <div class="center-content">
+        <div id="header-group">
+          {% sections 'header-group' %}
+        </div>
 
-    {% sections 'footer-group' %}
+        <script
+          src="{{ 'critical.js' | asset_url }}"
+          type="module"
+          async
+          blocking="render"
+        ></script>
 
-    {% render 'search-modal' %}
+        <main
+          id="MainContent"
+          class="content-for-layout"
+          role="main"
+          data-page-transition-enabled="{{ settings.page_transition_enabled }}"
+          data-product-transition="{{ settings.transition_to_main_product }}"
+          data-template="{{ template }}"
+        >
+          {{ content_for_layout }}
+        </main>
 
-    {% if settings.quick_add or settings.mobile_quick_add %}
-      {% render 'quick-add-modal' %}
-    {% endif %}
+        {% sections 'footer-group' %}
+
+        {% render 'search-modal' %}
+
+        {% if settings.quick_add or settings.mobile_quick_add %}
+          {% render 'quick-add-modal' %}
+        {% endif %}
+      </div>
+
+      {%- comment -%} Right Border (20%) {%- endcomment -%}
+      <div class="side-border side-border--right">
+        {%- comment -%} Future right border content/decoration {%- endcomment -%}
+      </div>
+    </div>
+
+    {%- comment -%} Bottom Border Navigation {%- endcomment -%}
+    <div id="bottom-border-navigation" class="border-navigation border-navigation--bottom">
+      {%- comment -%} Future bottom navigation menu content {%- endcomment -%}
+    </div>
+
+    <style>
+      /* Layout with Borders - 20% left, 60% center, 20% right */
+      .layout-with-borders {
+        display: flex;
+        min-height: calc(100vh - var(--border-navigation-height) * 2);
+        width: 100%;
+      }
+
+      .side-border {
+        width: 20%;
+        background: var(--color-background);
+        border-inline: 1px solid var(--color-border);
+        position: relative;
+      }
+
+      .side-border--left {
+        border-left: none;
+        border-right: 1px solid var(--color-border);
+      }
+
+      .side-border--right {
+        border-right: none;
+        border-left: 1px solid var(--color-border);
+      }
+
+      .center-content {
+        width: 60%;
+        flex-shrink: 0;
+        background: var(--color-background);
+      }
+
+      /* Border Navigation Areas */
+      .border-navigation {
+        --border-navigation-height: 60px;
+        height: var(--border-navigation-height);
+        width: 100%;
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: sticky;
+        z-index: var(--layer-header);
+      }
+
+      .border-navigation--top {
+        top: 0;
+        border-bottom: 1px solid var(--color-border);
+        border-top: none;
+      }
+
+      .border-navigation--bottom {
+        bottom: 0;
+        border-top: 1px solid var(--color-border);
+        border-bottom: none;
+      }
+
+      /* Responsive adjustments */
+      @media screen and (max-width: 989px) {
+        .side-border {
+          width: 10%;
+        }
+
+        .center-content {
+          width: 80%;
+        }
+      }
+
+      @media screen and (max-width: 749px) {
+        .layout-with-borders {
+          flex-direction: column;
+        }
+
+        .side-border {
+          display: none;
+        }
+
+        .center-content {
+          width: 100%;
+        }
+
+        .border-navigation {
+          --border-navigation-height: 50px;
+        }
+      }
+    </style>
   </body>
 </html>
