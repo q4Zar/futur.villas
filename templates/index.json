@@ -76,7 +76,7 @@
             "button_nazDaa": {
               "type": "button",
               "settings": {
-                "label": "Shop all →",
+                "label": "SoundSystems for Homes",
                 "link": "shopify://collections/all",
                 "open_in_new_tab": false,
                 "style_class": "link",

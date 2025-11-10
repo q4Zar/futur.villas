@@ -444,13 +444,13 @@
         endif
       %}
 
-      {%- comment -%} SoundSystems for Homes {%- endcomment -%}
-      <div class="hero-soundsystems">
-        <h1 class="hero-soundsystems__title">SoundSystems for Homes</h1>
+      {%- comment -%} Shop all link in hero {%- endcomment -%}
+      <div class="hero-shop-link">
+        <a href="/collections/all" class="hero-shop-link__anchor">Shop all →</a>
       </div>
 
       <style>
-        .hero-soundsystems {
+        .hero-shop-link {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -458,17 +458,23 @@
           padding: var(--padding-2xl);
         }
 
-        .hero-soundsystems__title {
+        .hero-shop-link__anchor {
           font-size: clamp(2rem, 8vw, 6rem);
           font-weight: 700;
           text-align: center;
           color: var(--color-foreground);
           line-height: 1.2;
           letter-spacing: -0.02em;
+          text-decoration: none;
+          transition: opacity 0.2s ease;
+        }
+
+        .hero-shop-link__anchor:hover {
+          opacity: 0.7;
         }
 
         @media screen and (max-width: 749px) {
-          .hero-soundsystems {
+          .hero-shop-link {
             min-height: 40vh;
           }
         }
