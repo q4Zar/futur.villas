@@ -434,7 +434,7 @@
       ></a>
     {%- endif -%}
     <div
-      class="hero__media-wrapper"
+      class="hero__media-wrapper hero__carousel-wrapper"
       style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
       data-testid="hero-media-wrapper"
     >
@@ -443,7 +443,36 @@
           render 'overlay', settings: section.settings
         endif
       %}
-      {{ media }}
+
+      {%- comment -%} DALI Scenes Carousel {%- endcomment -%}
+      <div class="dali-carousel" data-carousel>
+        <div class="dali-carousel__track">
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/DALI-KUPID-4961-3461.webp' | asset_url }}" alt="DALI KUPID" class="hero__image" loading="eager">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/DALI_MENUET_SE_-_Residential_Evening.webp' | asset_url }}" alt="DALI MENUET SE" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/EQUI-OBERON-C-SUB-E-12F-SOUND-HUB-livingroom-1000x600.webp' | asset_url }}" alt="DALI OBERON Living Room" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/GARDIAN-OW_garden_terrace.webp' | asset_url }}" alt="DALI GARDIAN Garden" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/OBERON-1-C_floorplan_surround_home_interior.webp' | asset_url }}" alt="DALI OBERON Home Interior" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/oberon-7-oak-tv-setup.jpg' | asset_url }}" alt="DALI OBERON 7 TV Setup" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/PHANTOM-E-80-WR-LIFESTYLE-SPA-WELLNESS-ANGLE-01.webp' | asset_url }}" alt="DALI PHANTOM Spa" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'dali-scenes/RUBICON-surround-SUB-E-12F-SOUND-HUB-1000x600.webp' | asset_url }}" alt="DALI RUBICON Surround" class="hero__image">
+          </div>
+        </div>
+      </div>
     </div>
     <div
       class="
@@ -681,7 +710,129 @@
       }
     }
   }
+
+  /* DALI Carousel Styles */
+  .dali-carousel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .dali-carousel__track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .dali-carousel__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+
+  .dali-carousel__slide.active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .dali-carousel__slide.next {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .dali-carousel__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 {% endstylesheet %}
+
+<script>
+  class DaliCarousel extends HTMLElement {
+    constructor() {
+      super();
+      this.currentSlide = 0;
+      this.slides = [];
+      this.interval = null;
+      this.transitionDuration = 5000; // 5 seconds per slide
+    }
+
+    connectedCallback() {
+      this.slides = Array.from(this.querySelectorAll('.dali-carousel__slide'));
+
+      if (this.slides.length === 0) return;
+
+      // Initialize first slide
+      this.slides[0].classList.add('active');
+
+      // Start auto-rotation
+      this.startAutoRotate();
+
+      // Pause on hover (optional)
+      this.addEventListener('mouseenter', () => this.stopAutoRotate());
+      this.addEventListener('mouseleave', () => this.startAutoRotate());
+    }
+
+    disconnectedCallback() {
+      this.stopAutoRotate();
+    }
+
+    startAutoRotate() {
+      this.stopAutoRotate();
+      this.interval = setInterval(() => {
+        this.nextSlide();
+      }, this.transitionDuration);
+    }
+
+    stopAutoRotate() {
+      if (this.interval) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
+    }
+
+    nextSlide() {
+      const currentSlideEl = this.slides[this.currentSlide];
+      this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      const nextSlideEl = this.slides[this.currentSlide];
+
+      // Remove active class from current
+      currentSlideEl.classList.remove('active');
+      currentSlideEl.classList.add('next');
+
+      // Add active class to next
+      nextSlideEl.classList.remove('next');
+      nextSlideEl.classList.add('active');
+
+      // Clean up next class after transition
+      setTimeout(() => {
+        currentSlideEl.classList.remove('next');
+      }, 2000);
+    }
+  }
+
+  customElements.define('dali-carousel', DaliCarousel);
+
+  // Initialize carousel on DOM load
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('[data-carousel]');
+    carousels.forEach(carousel => {
+      // Convert div to custom element
+      const daliCarousel = document.createElement('dali-carousel');
+      daliCarousel.innerHTML = carousel.innerHTML;
+      daliCarousel.className = carousel.className;
+      daliCarousel.setAttribute('data-carousel', '');
+      carousel.replaceWith(daliCarousel);
+    });
+  });
+</script>
 
 {% schema %}
 {
