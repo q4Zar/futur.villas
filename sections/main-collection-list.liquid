@@ -1,7 +1,45 @@
 
 
 {% liquid
-  assign section_collections = collections
+  # Build array of collections with their weight values for sorting
+  # Format: "weight|handle" for collections with weight, or "9999|handle" for those without
+  # Lower weight = higher priority (appears first)
+
+  assign collection_sort_array = ''
+
+  for collection in collections
+    assign weight = collection.metafields.custom.sort_order.value
+
+    if weight == blank
+      # No weight set, use 9999 (appears last)
+      assign weight = 9999
+    endif
+
+    # Pad weight to ensure proper sorting (e.g., "0010" instead of "10")
+    assign weight_padded = weight | prepend: '0000' | slice: -4, 4
+
+    # Build sort string: "weight|handle"
+    assign sort_item = weight_padded | append: '|' | append: collection.handle
+    assign collection_sort_array = collection_sort_array | append: sort_item | append: ','
+  endfor
+
+  # Sort the array (will sort by weight first due to padding)
+  assign sorted_items = collection_sort_array | split: ',' | sort
+
+  # Rebuild section_collections array from sorted handles
+  assign section_collections = ''
+  for item in sorted_items
+    if item != blank
+      assign parts = item | split: '|'
+      assign handle = parts[1]
+      assign collection = collections[handle]
+      if collection != blank
+        assign section_collections = section_collections | append: collection | append: '|||'
+      endif
+    endif
+  endfor
+
+  assign section_collections = section_collections | split: '|||'
   assign max_items = 20
 %}
 
