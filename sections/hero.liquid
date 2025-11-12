@@ -464,6 +464,11 @@
           </div>
         </div>
       </div>
+
+      {%- comment -%} Animated futur.villas overlay {%- endcomment -%}
+      <div class="hero__brand-overlay">
+        <h1 class="hero__brand-title">futur.villas</h1>
+      </div>
     </div>
     <div
       class="
@@ -742,6 +747,47 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  /* Animated Brand Overlay */
+  .hero__brand-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--layer-overlay);
+    pointer-events: none;
+  }
+
+  .hero__brand-title {
+    font-family: var(--font-primary--family);
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 100;
+    color: white;
+    text-align: center;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    animation: brand-breathe 4s ease-in-out infinite;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes brand-breathe {
+    from,
+    to {
+      font-weight: 100;
+      opacity: 0.9;
+    }
+    50% {
+      font-weight: 700;
+      opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero__brand-title {
+      font-size: clamp(2rem, 12vw, 4rem);
+    }
   }
 {% endstylesheet %}
 
