@@ -44,21 +44,6 @@
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
 
-    {%- comment -%} Top Border Navigation with Spotify {%- endcomment -%}
-    <div id="top-border-navigation" class="border-navigation border-navigation--top">
-      <iframe
-        data-testid="embed-iframe"
-        style="border-radius:12px"
-        src="https://open.spotify.com/embed/track/4pRiTSdh7vA8gGajMpMbf5?utm_source=generator"
-        width="100%"
-        height="352"
-        frameBorder="0"
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-      </iframe>
-    </div>
-
     {%- comment -%} Main Layout Container with Side Borders {%- endcomment -%}
     <div class="layout-with-borders">
       {%- comment -%} Left Border (20%) {%- endcomment -%}
@@ -105,26 +90,11 @@
       </div>
     </div>
 
-    {%- comment -%} Bottom Border Navigation with Spotify {%- endcomment -%}
-    <div id="bottom-border-navigation" class="border-navigation border-navigation--bottom">
-      <iframe
-        data-testid="embed-iframe"
-        style="border-radius:12px"
-        src="https://open.spotify.com/embed/track/4pRiTSdh7vA8gGajMpMbf5?utm_source=generator"
-        width="100%"
-        height="152"
-        frameBorder="0"
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-      </iframe>
-    </div>
-
     <style>
       /* Layout with Borders - 20% left, 60% center, 20% right */
       .layout-with-borders {
         display: flex;
-        min-height: calc(100vh - var(--border-navigation-height) * 2);
+        min-height: 100vh;
         width: 100%;
       }
 
@@ -151,39 +121,6 @@
         background: var(--color-background);
       }
 
-      /* Border Navigation Areas */
-      .border-navigation {
-        --border-navigation-height: 60px;
-        height: var(--border-navigation-height);
-        width: 100%;
-        background: var(--color-background);
-        border: 1px solid var(--color-border);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: sticky;
-        z-index: var(--layer-header);
-        padding: var(--padding-xs);
-      }
-
-      .border-navigation--top {
-        top: 0;
-        border-bottom: 1px solid var(--color-border);
-        border-top: none;
-        height: auto;
-        min-height: 352px;
-        --border-navigation-height: 372px; /* 352px + padding */
-      }
-
-      .border-navigation--bottom {
-        bottom: 0;
-        border-top: 1px solid var(--color-border);
-        border-bottom: none;
-        height: auto;
-        min-height: 152px;
-        --border-navigation-height: 172px; /* 152px + padding */
-      }
-
       /* Responsive adjustments */
       @media screen and (max-width: 989px) {
         .side-border {
@@ -206,10 +143,6 @@
 
         .center-content {
           width: 100%;
-        }
-
-        .border-navigation {
-          --border-navigation-height: 50px;
         }
       }
     </style>
