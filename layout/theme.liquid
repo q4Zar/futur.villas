@@ -31,6 +31,13 @@
       {%- render 'theme-editor' -%}
     {% endif %}
 
+    <style>
+      /* Ultra-clean UI - Hide footer */
+      #shopify-section-group-footer-group {
+        display: none !important;
+      }
+    </style>
+
     {{ content_for_header }}
   </head>
 

@@ -444,35 +444,31 @@
         endif
       %}
 
-      {%- comment -%} SoundSystems for Homes {%- endcomment -%}
-      <div class="hero-soundsystems">
-        <h1 class="hero-soundsystems__title">SoundSystems for Homes</h1>
+      {%- comment -%} Futur Villas Main Carousel {%- endcomment -%}
+      <div class="dali-carousel" data-carousel>
+        <div class="dali-carousel__track">
+          <div class="dali-carousel__slide">
+            <img src="{{ 'futur.villas.1.png' | asset_url }}" alt="Futur Villas" class="hero__image" loading="eager">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'sound-system.1.jpg' | asset_url }}" alt="Sound System" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'futur.villas.2.png' | asset_url }}" alt="Futur Villas" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'futur.villas.3.png' | asset_url }}" alt="Futur Villas" class="hero__image">
+          </div>
+          <div class="dali-carousel__slide">
+            <img src="{{ 'futur.villas.4.png' | asset_url }}" alt="Futur Villas" class="hero__image">
+          </div>
+        </div>
       </div>
 
-      <style>
-        .hero-soundsystems {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 60vh;
-          padding: var(--padding-2xl);
-        }
-
-        .hero-soundsystems__title {
-          font-size: clamp(2rem, 8vw, 6rem);
-          font-weight: 700;
-          text-align: center;
-          color: var(--color-foreground);
-          line-height: 1.2;
-          letter-spacing: -0.02em;
-        }
-
-        @media screen and (max-width: 749px) {
-          .hero-soundsystems {
-            min-height: 40vh;
-          }
-        }
-      </style>
+      {%- comment -%} Animated futur.villas overlay {%- endcomment -%}
+      <div class="hero__brand-overlay">
+        <h1 class="hero__brand-title">futur.villas</h1>
+      </div>
     </div>
     <div
       class="
@@ -751,6 +747,54 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  /* Animated Brand Overlay */
+  .hero__brand-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2rem;
+    z-index: var(--layer-overlay);
+    pointer-events: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .hero__brand-overlay {
+      padding-top: 3rem;
+    }
+  }
+
+  .hero__brand-title {
+    font-family: var(--font-primary--family);
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 100;
+    color: white;
+    text-align: center;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    animation: brand-breathe 4s ease-in-out infinite;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes brand-breathe {
+    from,
+    to {
+      font-weight: 100;
+      opacity: 0.9;
+    }
+    50% {
+      font-weight: 700;
+      opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero__brand-title {
+      font-size: clamp(2rem, 12vw, 4rem);
+    }
   }
 {% endstylesheet %}
 
