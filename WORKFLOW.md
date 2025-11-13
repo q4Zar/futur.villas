@@ -473,6 +473,94 @@ This provides:
 - Maintains visual elegance with blur effect
 - Uses theme color variables for consistency
 
+### Deployment:
+- **PR #5**: https://github.com/q4Zar/futur.villas/pull/5
+- **Status**: ✅ Merged to main and deployed
+- **Deployment Time**: 2025-11-10 09:07 CET (56 seconds)
+- **GitHub Actions**: Successful deployment to production
+
+---
+
+## Task: Layout Restructure with Borders and Navigation Areas
+
+**Status:** ✅ Implemented
+**Date:** 2025-11-10
+
+### Objective:
+Restructure the theme layout to add decorative borders on left/right (20% each) constraining content to 60% center width, plus top/bottom border areas for future navigation menus.
+
+### Implementation:
+
+Modified `layout/theme.liquid` to create a new layout structure:
+
+#### Layout Structure:
+```
+┌─────────────────────────────────────────┐
+│     Top Border Navigation (60px)        │  ← Sticky top navigation area
+├─────────┬───────────────────┬───────────┤
+│         │                   │           │
+│  Left   │   Center Content  │   Right   │
+│ Border  │      (60%)        │  Border   │
+│  (20%)  │                   │   (20%)   │
+│         │  - Header         │           │
+│         │  - Main Content   │           │
+│         │  - Footer         │           │
+│         │                   │           │
+├─────────┴───────────────────┴───────────┤
+│    Bottom Border Navigation (60px)      │  ← Sticky bottom navigation area
+└─────────────────────────────────────────┘
+```
+
+### Features Implemented:
+
+1. **Side Borders (20% each)**
+   - Left and right borders take 20% of viewport width each
+   - Center content constrained to 60% width
+   - Borders have theme background color and border lines
+   - Ready for future content/decoration
+
+2. **Top Border Navigation**
+   - 60px height sticky bar at top
+   - Position: sticky, top: 0
+   - Perfect for secondary navigation menu
+   - z-index: var(--layer-header)
+
+3. **Bottom Border Navigation**
+   - 60px height sticky bar at bottom
+   - Position: sticky, bottom: 0
+   - Ideal for quick actions or footer navigation
+   - z-index: var(--layer-header)
+
+4. **Responsive Design**
+   - **Desktop (>989px)**: 20% | 60% | 20% layout
+   - **Tablet (750-989px)**: 10% | 80% | 10% layout
+   - **Mobile (<749px)**:
+     - Side borders hidden (100% width content)
+     - Border navigation height reduced to 50px
+
+### CSS Variables Used:
+- `--border-navigation-height`: Configurable height for top/bottom bars (60px)
+- `--color-background`: Theme background color
+- `--color-border`: Theme border color
+- `--layer-header`: z-index for sticky positioning
+
+### Files Modified:
+- `layout/theme.liquid` - Complete layout restructure with inline styles
+
+### Benefits:
+- ✅ Content framed by decorative borders
+- ✅ Clear visual hierarchy
+- ✅ Dedicated areas for navigation menus (top & bottom)
+- ✅ Fully responsive across all devices
+- ✅ Uses theme CSS variables for consistency
+- ✅ Ready for future navigation menu implementation
+
+### Next Steps (Optional):
+1. Add navigation menu content to `#top-border-navigation`
+2. Add quick actions/links to `#bottom-border-navigation`
+3. Customize border areas with branding/decoration
+4. Adjust border widths via CSS variables if needed
+
 ---
 
 ## Task: Rollback to Pre-Bordered Layout
