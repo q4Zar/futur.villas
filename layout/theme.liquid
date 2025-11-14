@@ -44,107 +44,34 @@
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
 
-    {%- comment -%} Main Layout Container with Side Borders {%- endcomment -%}
-    <div class="layout-with-borders">
-      {%- comment -%} Left Border (20%) {%- endcomment -%}
-      <div class="side-border side-border--left">
-        {%- comment -%} Future left border content/decoration {%- endcomment -%}
-      </div>
-
-      {%- comment -%} Center Content (60%) {%- endcomment -%}
-      <div class="center-content">
-        <div id="header-group">
-          {% sections 'header-group' %}
-        </div>
-
-        <script
-          src="{{ 'critical.js' | asset_url }}"
-          type="module"
-          async
-          blocking="render"
-        ></script>
-
-        <main
-          id="MainContent"
-          class="content-for-layout"
-          role="main"
-          data-page-transition-enabled="{{ settings.page_transition_enabled }}"
-          data-product-transition="{{ settings.transition_to_main_product }}"
-          data-template="{{ template }}"
-        >
-          {{ content_for_layout }}
-        </main>
-
-        {% sections 'footer-group' %}
-
-        {% render 'search-modal' %}
-
-        {% if settings.quick_add or settings.mobile_quick_add %}
-          {% render 'quick-add-modal' %}
-        {% endif %}
-      </div>
-
-      {%- comment -%} Right Border (20%) {%- endcomment -%}
-      <div class="side-border side-border--right">
-        {%- comment -%} Future right border content/decoration {%- endcomment -%}
-      </div>
+    <div id="header-group">
+      {% sections 'header-group' %}
     </div>
 
-    <style>
-      /* Layout with Borders - 20% left, 60% center, 20% right */
-      .layout-with-borders {
-        display: flex;
-        min-height: 100vh;
-        width: 100%;
-      }
+    <script
+      src="{{ 'critical.js' | asset_url }}"
+      type="module"
+      async
+      blocking="render"
+    ></script>
 
-      .side-border {
-        width: 20%;
-        background: var(--color-background);
-        border-inline: 1px solid var(--color-border);
-        position: relative;
-      }
+    <main
+      id="MainContent"
+      class="content-for-layout"
+      role="main"
+      data-page-transition-enabled="{{ settings.page_transition_enabled }}"
+      data-product-transition="{{ settings.transition_to_main_product }}"
+      data-template="{{ template }}"
+    >
+      {{ content_for_layout }}
+    </main>
 
-      .side-border--left {
-        border-left: none;
-        border-right: 1px solid var(--color-border);
-      }
+    {% sections 'footer-group' %}
 
-      .side-border--right {
-        border-right: none;
-        border-left: 1px solid var(--color-border);
-      }
+    {% render 'search-modal' %}
 
-      .center-content {
-        width: 60%;
-        flex-shrink: 0;
-        background: var(--color-background);
-      }
-
-      /* Responsive adjustments */
-      @media screen and (max-width: 989px) {
-        .side-border {
-          width: 10%;
-        }
-
-        .center-content {
-          width: 80%;
-        }
-      }
-
-      @media screen and (max-width: 749px) {
-        .layout-with-borders {
-          flex-direction: column;
-        }
-
-        .side-border {
-          display: none;
-        }
-
-        .center-content {
-          width: 100%;
-        }
-      }
-    </style>
+    {% if settings.quick_add or settings.mobile_quick_add %}
+      {% render 'quick-add-modal' %}
+    {% endif %}
   </body>
 </html>
