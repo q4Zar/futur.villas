@@ -342,6 +342,25 @@
         "padding-block-end": 0
       }
     },
+    "expertises_home": {
+      "type": "expertises",
+      "settings": {
+        "show_title": true,
+        "title": "Nos Expertises",
+        "subtitle": "Des solutions complètes pour votre habitat intelligent",
+        "current_expertise": "domotique",
+        "electricity_title": "Électricité",
+        "electricity_description": "Installation et maintenance électrique professionnelle",
+        "domotique_title": "Domotique",
+        "domotique_description": "Maison connectée et automatisation intelligente",
+        "solaire_title": "Solaire",
+        "solaire_description": "Solutions photovoltaïques durables",
+        "securite_title": "Sécurité",
+        "securite_description": "Systèmes de surveillance et protection",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1"
+      }
+    },
     "section_RhpYRt": {
       "type": "section",
       "blocks": {
@@ -501,6 +520,7 @@
   },
   "order": [
     "hero_RkimKJ",
+    "expertises_home",
     "product_list_X8Q7bi"
   ]
 }

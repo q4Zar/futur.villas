@@ -1,0 +1,473 @@
+{%- comment -%}
+  Expertises Section - Showcases the 4 main expertise categories
+  - Electricity
+  - Home Automation (Domotique)
+  - Solar (Solaire)
+  - Security (Sécurité)
+{%- endcomment -%}
+
+{% liquid
+  assign current_expertise = section.settings.current_expertise
+%}
+
+<div
+  id="Expertises-{{ section.id }}"
+  class="expertises-section color-{{ section.settings.color_scheme }}"
+>
+  <div class="expertises__container section {{ section.settings.section_width }}">
+    {% if section.settings.show_title %}
+      <div class="expertises__header">
+        <h2 class="expertises__title">{{ section.settings.title | default: 'Nos Expertises' }}</h2>
+        {% if section.settings.subtitle != blank %}
+          <p class="expertises__subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="expertises__grid">
+      {%- comment -%} Electricity {%- endcomment -%}
+      <a href="{{ section.settings.electricity_link | default: '/pages/electricite' }}" class="expertises__card{% if current_expertise == 'electricity' %} expertises__card--active{% endif %}">
+        <div class="expertises__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <div class="expertises__card-content">
+          <h3 class="expertises__card-title">{{ section.settings.electricity_title | default: 'Électricité' }}</h3>
+          <p class="expertises__card-description">{{ section.settings.electricity_description | default: 'Installation et maintenance électrique professionnelle' }}</p>
+          <span class="expertises__card-link">
+            Découvrir
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      {%- comment -%} Home Automation (Domotique) {%- endcomment -%}
+      <a href="{{ section.settings.domotique_link | default: '/pages/domotique' }}" class="expertises__card{% if current_expertise == 'domotique' %} expertises__card--active{% endif %}">
+        <div class="expertises__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+            <path d="M9 22V12h6v10"/>
+            <circle cx="12" cy="8" r="1"/>
+          </svg>
+        </div>
+        <div class="expertises__card-content">
+          <h3 class="expertises__card-title">{{ section.settings.domotique_title | default: 'Domotique' }}</h3>
+          <p class="expertises__card-description">{{ section.settings.domotique_description | default: 'Maison connectée et automatisation intelligente' }}</p>
+          <span class="expertises__card-link">
+            Découvrir
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      {%- comment -%} Solar (Solaire) {%- endcomment -%}
+      <a href="{{ section.settings.solaire_link | default: '/pages/solaire' }}" class="expertises__card{% if current_expertise == 'solaire' %} expertises__card--active{% endif %}">
+        <div class="expertises__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </div>
+        <div class="expertises__card-content">
+          <h3 class="expertises__card-title">{{ section.settings.solaire_title | default: 'Solaire' }}</h3>
+          <p class="expertises__card-description">{{ section.settings.solaire_description | default: 'Solutions photovoltaïques durables' }}</p>
+          <span class="expertises__card-link">
+            Découvrir
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      {%- comment -%} Security (Sécurité) {%- endcomment -%}
+      <a href="{{ section.settings.securite_link | default: '/pages/securite' }}" class="expertises__card{% if current_expertise == 'securite' %} expertises__card--active{% endif %}">
+        <div class="expertises__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="expertises__card-content">
+          <h3 class="expertises__card-title">{{ section.settings.securite_title | default: 'Sécurité' }}</h3>
+          <p class="expertises__card-description">{{ section.settings.securite_description | default: 'Systèmes de surveillance et protection' }}</p>
+          <span class="expertises__card-link">
+            Découvrir
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .expertises-section {
+    padding: var(--padding-xl) 0;
+  }
+
+  .expertises__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
+  }
+
+  .expertises__header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .expertises__title {
+    font-family: var(--font-primary--family);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .expertises__subtitle {
+    font-size: var(--font-size--body-md);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .expertises__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap-md);
+  }
+
+  .expertises__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--padding-lg);
+    background: rgb(var(--color-background-rgb));
+    border: 1px solid rgb(var(--color-border-rgb) / 0.1);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .expertises__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgb(var(--color-foreground-rgb) / 0.03) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .expertises__card:hover::before,
+  .expertises__card--active::before {
+    opacity: 1;
+  }
+
+  .expertises__card:hover,
+  .expertises__card--active {
+    border-color: rgb(var(--color-foreground-rgb) / 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.08);
+  }
+
+  .expertises__card--active {
+    border-color: rgb(var(--color-foreground-rgb) / 0.3);
+  }
+
+  .expertises__card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--gap-md);
+    color: var(--color-foreground);
+    opacity: 0.8;
+  }
+
+  .expertises__card-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .expertises__card-title {
+    font-family: var(--font-primary--family);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .expertises__card-description {
+    font-size: var(--font-size--body-sm);
+    opacity: 0.65;
+    margin: 0 0 var(--gap-md);
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+
+  .expertises__card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .expertises__card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--font-size--body-sm);
+    font-weight: 500;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, gap 0.2s ease;
+  }
+
+  .expertises__card:hover .expertises__card-link {
+    opacity: 1;
+    gap: 0.75rem;
+  }
+
+  /* Tablet - 2 columns */
+  @media screen and (max-width: 990px) {
+    .expertises__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Mobile - 1 column with compact cards */
+  @media screen and (max-width: 749px) {
+    .expertises-section {
+      padding: var(--padding-lg) 0;
+    }
+
+    .expertises__container {
+      gap: var(--gap-lg);
+      padding: 0 var(--padding-md);
+    }
+
+    .expertises__header {
+      text-align: left;
+    }
+
+    .expertises__grid {
+      grid-template-columns: 1fr;
+      gap: var(--gap-sm);
+    }
+
+    .expertises__card {
+      flex-direction: row;
+      align-items: center;
+      padding: var(--padding-md);
+      gap: var(--gap-md);
+    }
+
+    .expertises__card:hover,
+    .expertises__card--active {
+      transform: translateX(4px);
+    }
+
+    .expertises__card-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      margin-bottom: 0;
+      background: rgb(var(--color-foreground-rgb) / 0.05);
+      border-radius: 12px;
+    }
+
+    .expertises__card-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .expertises__card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .expertises__card-title {
+      font-size: 1rem;
+      margin-bottom: 0.125rem;
+    }
+
+    .expertises__card-description {
+      font-size: 0.8125rem;
+      opacity: 0.6;
+      margin-bottom: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .expertises__card-link {
+      display: none;
+    }
+
+    .expertises__title {
+      font-size: 1.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Expertises",
+  "tag": "section",
+  "class": "expertises-wrapper section-wrapper",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Nos Expertises"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Des solutions complètes pour votre habitat"
+    },
+    {
+      "type": "select",
+      "id": "current_expertise",
+      "label": "Current expertise (highlights active)",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "electricity", "label": "Electricity" },
+        { "value": "domotique", "label": "Domotique" },
+        { "value": "solaire", "label": "Solaire" },
+        { "value": "securite", "label": "Sécurité" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Électricité"
+    },
+    {
+      "type": "text",
+      "id": "electricity_title",
+      "label": "Title",
+      "default": "Électricité"
+    },
+    {
+      "type": "text",
+      "id": "electricity_description",
+      "label": "Description",
+      "default": "Installation et maintenance électrique professionnelle"
+    },
+    {
+      "type": "url",
+      "id": "electricity_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Domotique"
+    },
+    {
+      "type": "text",
+      "id": "domotique_title",
+      "label": "Title",
+      "default": "Domotique"
+    },
+    {
+      "type": "text",
+      "id": "domotique_description",
+      "label": "Description",
+      "default": "Maison connectée et automatisation intelligente"
+    },
+    {
+      "type": "url",
+      "id": "domotique_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Solaire"
+    },
+    {
+      "type": "text",
+      "id": "solaire_title",
+      "label": "Title",
+      "default": "Solaire"
+    },
+    {
+      "type": "text",
+      "id": "solaire_description",
+      "label": "Description",
+      "default": "Solutions photovoltaïques durables"
+    },
+    {
+      "type": "url",
+      "id": "solaire_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Sécurité"
+    },
+    {
+      "type": "text",
+      "id": "securite_title",
+      "label": "Title",
+      "default": "Sécurité"
+    },
+    {
+      "type": "text",
+      "id": "securite_description",
+      "label": "Description",
+      "default": "Systèmes de surveillance et protection"
+    },
+    {
+      "type": "url",
+      "id": "securite_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Expertises",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}
