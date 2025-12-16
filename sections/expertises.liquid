@@ -1,5 +1,6 @@
 {%- comment -%}
   Expertises Section - Showcases the 4 main expertise categories
+  With Phosphor icons and mouse-follow glow effect
   - Electricity
   - Home Automation (Domotique)
   - Solar (Solaire)
@@ -10,7 +11,13 @@
   assign current_expertise = section.settings.current_expertise
 %}
 
-<div
+{%- comment -%} Phosphor Icons CDN {%- endcomment -%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" media="print" onload="this.media='all'" />
+<noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" />
+</noscript>
+
+<expertises-section
   id="Expertises-{{ section.id }}"
   class="expertises-section color-{{ section.settings.color_scheme }}"
 >
@@ -26,87 +33,91 @@
 
     <div class="expertises__grid">
       {%- comment -%} Electricity {%- endcomment -%}
-      <a href="{{ section.settings.electricity_link | default: '/pages/electricite' }}" class="expertises__card{% if current_expertise == 'electricity' %} expertises__card--active{% endif %}">
-        <div class="expertises__card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
-        </div>
-        <div class="expertises__card-content">
-          <h3 class="expertises__card-title">{{ section.settings.electricity_title | default: 'Électricité' }}</h3>
-          <p class="expertises__card-description">{{ section.settings.electricity_description | default: 'Installation et maintenance électrique professionnelle' }}</p>
-          <span class="expertises__card-link">
-            Découvrir
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
+      <a href="{{ section.settings.electricity_link | default: '/pages/electricite' }}"
+         class="expertises__card{% if current_expertise == 'electricity' %} expertises__card--active{% endif %}"
+         data-mouse-effect>
+        <div class="expertises__card-glow"></div>
+        <div class="expertises__card-inner">
+          <div class="expertises__card-icon">
+            <i class="ph ph-lightning"></i>
+          </div>
+          <div class="expertises__card-content">
+            <span class="expertises__card-hero">{{ section.settings.electricity_hero | default: 'Énergie maîtrisée' }}</span>
+            <h3 class="expertises__card-title">{{ section.settings.electricity_title | default: 'Électricité' }}</h3>
+            <p class="expertises__card-description">{{ section.settings.electricity_description | default: 'Installation et maintenance électrique professionnelle' }}</p>
+            <span class="expertises__card-link">
+              Découvrir
+              <i class="ph ph-arrow-right"></i>
+            </span>
+          </div>
         </div>
       </a>
 
       {%- comment -%} Home Automation (Domotique) {%- endcomment -%}
-      <a href="{{ section.settings.domotique_link | default: '/pages/domotique' }}" class="expertises__card{% if current_expertise == 'domotique' %} expertises__card--active{% endif %}">
-        <div class="expertises__card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
-            <path d="M9 22V12h6v10"/>
-            <circle cx="12" cy="8" r="1"/>
-          </svg>
-        </div>
-        <div class="expertises__card-content">
-          <h3 class="expertises__card-title">{{ section.settings.domotique_title | default: 'Domotique' }}</h3>
-          <p class="expertises__card-description">{{ section.settings.domotique_description | default: 'Maison connectée et automatisation intelligente' }}</p>
-          <span class="expertises__card-link">
-            Découvrir
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
+      <a href="{{ section.settings.domotique_link | default: '/pages/domotique' }}"
+         class="expertises__card{% if current_expertise == 'domotique' %} expertises__card--active{% endif %}"
+         data-mouse-effect>
+        <div class="expertises__card-glow"></div>
+        <div class="expertises__card-inner">
+          <div class="expertises__card-icon">
+            <i class="ph ph-cpu"></i>
+          </div>
+          <div class="expertises__card-content">
+            <span class="expertises__card-hero">{{ section.settings.domotique_hero | default: 'Habitat intelligent' }}</span>
+            <h3 class="expertises__card-title">{{ section.settings.domotique_title | default: 'Domotique' }}</h3>
+            <p class="expertises__card-description">{{ section.settings.domotique_description | default: 'Maison connectée et automatisation intelligente' }}</p>
+            <span class="expertises__card-link">
+              Découvrir
+              <i class="ph ph-arrow-right"></i>
+            </span>
+          </div>
         </div>
       </a>
 
       {%- comment -%} Solar (Solaire) {%- endcomment -%}
-      <a href="{{ section.settings.solaire_link | default: '/pages/solaire' }}" class="expertises__card{% if current_expertise == 'solaire' %} expertises__card--active{% endif %}">
-        <div class="expertises__card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-          </svg>
-        </div>
-        <div class="expertises__card-content">
-          <h3 class="expertises__card-title">{{ section.settings.solaire_title | default: 'Solaire' }}</h3>
-          <p class="expertises__card-description">{{ section.settings.solaire_description | default: 'Solutions photovoltaïques durables' }}</p>
-          <span class="expertises__card-link">
-            Découvrir
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
+      <a href="{{ section.settings.solaire_link | default: '/pages/solaire' }}"
+         class="expertises__card{% if current_expertise == 'solaire' %} expertises__card--active{% endif %}"
+         data-mouse-effect>
+        <div class="expertises__card-glow"></div>
+        <div class="expertises__card-inner">
+          <div class="expertises__card-icon">
+            <i class="ph ph-sun"></i>
+          </div>
+          <div class="expertises__card-content">
+            <span class="expertises__card-hero">{{ section.settings.solaire_hero | default: 'Puissance naturelle' }}</span>
+            <h3 class="expertises__card-title">{{ section.settings.solaire_title | default: 'Solaire' }}</h3>
+            <p class="expertises__card-description">{{ section.settings.solaire_description | default: 'Solutions photovoltaïques durables' }}</p>
+            <span class="expertises__card-link">
+              Découvrir
+              <i class="ph ph-arrow-right"></i>
+            </span>
+          </div>
         </div>
       </a>
 
       {%- comment -%} Security (Sécurité) {%- endcomment -%}
-      <a href="{{ section.settings.securite_link | default: '/pages/securite' }}" class="expertises__card{% if current_expertise == 'securite' %} expertises__card--active{% endif %}">
-        <div class="expertises__card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="M9 12l2 2 4-4"/>
-          </svg>
-        </div>
-        <div class="expertises__card-content">
-          <h3 class="expertises__card-title">{{ section.settings.securite_title | default: 'Sécurité' }}</h3>
-          <p class="expertises__card-description">{{ section.settings.securite_description | default: 'Systèmes de surveillance et protection' }}</p>
-          <span class="expertises__card-link">
-            Découvrir
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
+      <a href="{{ section.settings.securite_link | default: '/pages/securite' }}"
+         class="expertises__card{% if current_expertise == 'securite' %} expertises__card--active{% endif %}"
+         data-mouse-effect>
+        <div class="expertises__card-glow"></div>
+        <div class="expertises__card-inner">
+          <div class="expertises__card-icon">
+            <i class="ph ph-shield-check"></i>
+          </div>
+          <div class="expertises__card-content">
+            <span class="expertises__card-hero">{{ section.settings.securite_hero | default: 'Protection totale' }}</span>
+            <h3 class="expertises__card-title">{{ section.settings.securite_title | default: 'Sécurité' }}</h3>
+            <p class="expertises__card-description">{{ section.settings.securite_description | default: 'Systèmes de surveillance et protection' }}</p>
+            <span class="expertises__card-link">
+              Découvrir
+              <i class="ph ph-arrow-right"></i>
+            </span>
+          </div>
         </div>
       </a>
     </div>
   </div>
-</div>
+</expertises-section>
 
 {% stylesheet %}
   .expertises-section {
@@ -145,82 +156,124 @@
     gap: var(--gap-md);
   }
 
+  /* Card Base */
   .expertises__card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: var(--padding-lg);
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    display: block;
+    position: relative;
     background: rgb(var(--color-background-rgb));
-    border: 1px solid rgb(var(--color-border-rgb) / 0.1);
-    border-radius: 12px;
+    border: 1px solid rgb(var(--color-border-rgb) / 0.08);
+    border-radius: 16px;
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
-    position: relative;
     overflow: hidden;
-  }
-
-  .expertises__card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgb(var(--color-foreground-rgb) / 0.03) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .expertises__card:hover::before,
-  .expertises__card--active::before {
-    opacity: 1;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .expertises__card:hover,
   .expertises__card--active {
-    border-color: rgb(var(--color-foreground-rgb) / 0.2);
+    border-color: rgb(var(--color-foreground-rgb) / 0.15);
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgb(0 0 0 / 0.08);
+    box-shadow: 0 20px 40px rgb(0 0 0 / 0.06);
   }
 
   .expertises__card--active {
-    border-color: rgb(var(--color-foreground-rgb) / 0.3);
+    border-color: rgb(var(--color-foreground-rgb) / 0.2);
   }
 
+  /* Mouse-follow glow effect */
+  .expertises__card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      500px circle at var(--mouse-x) var(--mouse-y),
+      rgb(var(--color-foreground-rgb) / 0.07),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+    will-change: opacity;
+  }
+
+  .expertises__card:hover .expertises__card-glow {
+    opacity: 1;
+  }
+
+  /* Card Inner Container */
+  .expertises__card-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--padding-lg);
+    height: 100%;
+  }
+
+  /* Phosphor Icon */
   .expertises__card-icon {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--gap-md);
+    margin-bottom: var(--gap-lg);
     color: var(--color-foreground);
-    opacity: 0.8;
+    background: rgb(var(--color-foreground-rgb) / 0.04);
+    border-radius: 14px;
+    transition: background 0.3s ease, transform 0.3s ease;
   }
 
-  .expertises__card-icon svg {
-    width: 32px;
-    height: 32px;
+  .expertises__card-icon i {
+    font-size: 28px;
+    line-height: 1;
   }
 
-  .expertises__card-title {
-    font-family: var(--font-primary--family);
-    font-size: 1.25rem;
+  .expertises__card:hover .expertises__card-icon {
+    background: rgb(var(--color-foreground-rgb) / 0.08);
+    transform: scale(1.05);
+  }
+
+  /* Hero Text */
+  .expertises__card-hero {
+    display: block;
+    font-size: 0.6875rem;
     font-weight: 600;
-    margin: 0 0 0.5rem;
-    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.5;
+    margin-bottom: 0.375rem;
+    transition: opacity 0.3s ease;
   }
 
-  .expertises__card-description {
-    font-size: var(--font-size--body-sm);
-    opacity: 0.65;
-    margin: 0 0 var(--gap-md);
-    line-height: 1.5;
-    flex-grow: 1;
+  .expertises__card:hover .expertises__card-hero {
+    opacity: 0.7;
   }
 
+  /* Card Content */
   .expertises__card-content {
     display: flex;
     flex-direction: column;
     flex: 1;
+  }
+
+  .expertises__card-title {
+    font-family: var(--font-primary--family);
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin: 0 0 0.625rem;
+    letter-spacing: -0.02em;
+  }
+
+  .expertises__card-description {
+    font-size: var(--font-size--body-sm);
+    opacity: 0.6;
+    margin: 0 0 var(--gap-lg);
+    line-height: 1.6;
+    flex-grow: 1;
   }
 
   .expertises__card-link {
@@ -229,13 +282,21 @@
     gap: 0.5rem;
     font-size: var(--font-size--body-sm);
     font-weight: 500;
-    opacity: 0.7;
-    transition: opacity 0.2s ease, gap 0.2s ease;
+    opacity: 0.6;
+    transition: opacity 0.25s ease, gap 0.25s ease;
+  }
+
+  .expertises__card-link i {
+    font-size: 16px;
+    transition: transform 0.25s ease;
   }
 
   .expertises__card:hover .expertises__card-link {
     opacity: 1;
-    gap: 0.75rem;
+  }
+
+  .expertises__card:hover .expertises__card-link i {
+    transform: translateX(4px);
   }
 
   /* Tablet - 2 columns */
@@ -266,10 +327,7 @@
     }
 
     .expertises__card {
-      flex-direction: row;
-      align-items: center;
-      padding: var(--padding-md);
-      gap: var(--gap-md);
+      border-radius: 12px;
     }
 
     .expertises__card:hover,
@@ -277,23 +335,33 @@
       transform: translateX(4px);
     }
 
+    .expertises__card-inner {
+      flex-direction: row;
+      align-items: center;
+      padding: var(--padding-md);
+      gap: var(--gap-md);
+    }
+
     .expertises__card-icon {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
       margin-bottom: 0;
-      background: rgb(var(--color-foreground-rgb) / 0.05);
       border-radius: 12px;
     }
 
-    .expertises__card-icon svg {
-      width: 24px;
-      height: 24px;
+    .expertises__card-icon i {
+      font-size: 24px;
     }
 
     .expertises__card-content {
       flex: 1;
       min-width: 0;
+    }
+
+    .expertises__card-hero {
+      font-size: 0.625rem;
+      margin-bottom: 0.125rem;
     }
 
     .expertises__card-title {
@@ -303,7 +371,7 @@
 
     .expertises__card-description {
       font-size: 0.8125rem;
-      opacity: 0.6;
+      opacity: 0.55;
       margin-bottom: 0;
       display: -webkit-box;
       -webkit-line-clamp: 1;
@@ -318,8 +386,90 @@
     .expertises__title {
       font-size: 1.5rem;
     }
+
+    /* Disable glow on mobile for performance */
+    .expertises__card-glow {
+      display: none;
+    }
+  }
+
+  /* Accessibility - Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .expertises__card,
+    .expertises__card-glow,
+    .expertises__card-icon,
+    .expertises__card-hero,
+    .expertises__card-link,
+    .expertises__card-link i {
+      transition: none;
+    }
+
+    .expertises__card:hover,
+    .expertises__card--active {
+      transform: none;
+    }
+
+    .expertises__card-glow {
+      display: none;
+    }
   }
 {% endstylesheet %}
+
+<script>
+  class ExpertisesSection extends HTMLElement {
+    constructor() {
+      super();
+      this.lastTime = 0;
+      this.frameDelay = 16; // ~60fps throttle
+    }
+
+    connectedCallback() {
+      // Check for reduced motion preference
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      this.boundHandleMouseMove = this.handleMouseMove.bind(this);
+      this.boundHandleMouseLeave = this.handleMouseLeave.bind(this);
+
+      this.addEventListener('mousemove', this.boundHandleMouseMove);
+      this.addEventListener('mouseleave', this.boundHandleMouseLeave);
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener('mousemove', this.boundHandleMouseMove);
+      this.removeEventListener('mouseleave', this.boundHandleMouseLeave);
+    }
+
+    handleMouseMove(e) {
+      const now = Date.now();
+      if (now - this.lastTime < this.frameDelay) return;
+      this.lastTime = now;
+
+      const card = e.target.closest('[data-mouse-effect]');
+      if (!card) return;
+
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+    }
+
+    handleMouseLeave(e) {
+      const card = e.target.closest('[data-mouse-effect]');
+      if (card) {
+        card.style.setProperty('--mouse-x', '50%');
+        card.style.setProperty('--mouse-y', '50%');
+      }
+    }
+  }
+
+  if (!customElements.get('expertises-section')) {
+    customElements.define('expertises-section', ExpertisesSection);
+  }
+</script>
 
 {% schema %}
 {
@@ -364,6 +514,12 @@
     },
     {
       "type": "text",
+      "id": "electricity_hero",
+      "label": "Hero text",
+      "default": "Énergie maîtrisée"
+    },
+    {
+      "type": "text",
       "id": "electricity_title",
       "label": "Title",
       "default": "Électricité"
@@ -382,6 +538,12 @@
     {
       "type": "header",
       "content": "Domotique"
+    },
+    {
+      "type": "text",
+      "id": "domotique_hero",
+      "label": "Hero text",
+      "default": "Habitat intelligent"
     },
     {
       "type": "text",
@@ -406,6 +568,12 @@
     },
     {
       "type": "text",
+      "id": "solaire_hero",
+      "label": "Hero text",
+      "default": "Puissance naturelle"
+    },
+    {
+      "type": "text",
       "id": "solaire_title",
       "label": "Title",
       "default": "Solaire"
@@ -424,6 +592,12 @@
     {
       "type": "header",
       "content": "Sécurité"
+    },
+    {
+      "type": "text",
+      "id": "securite_hero",
+      "label": "Hero text",
+      "default": "Protection totale"
     },
     {
       "type": "text",
